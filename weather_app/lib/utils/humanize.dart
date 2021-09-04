@@ -22,7 +22,7 @@ class Humanize {
   }
 
   static String weatherDescription(Weather weather) {
-    var day = MyDateUtils.weekdays[weather.dateTime.weekday];
+    var day = DateUtils.weekdays[weather.dateTime.weekday];
     var description = Weather.displayValues[weather.description];
     return "$day. ${description.replaceFirst(description[0], description[0].toUpperCase())}.";
   }

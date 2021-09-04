@@ -1,4 +1,4 @@
-class MyDateUtils {
+class DateUtils {
   static const Map<int, String> weekdays = {
     1: "Monday",
     2: "Tuesday",
@@ -9,4 +9,3 @@ class MyDateUtils {
     7: "Sunday",
   };
 }
-

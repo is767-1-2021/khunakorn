@@ -6,7 +6,7 @@ import 'package:weather_app/styles.dart';
 
 void main() {
   AppSettings settings = AppSettings();
-  WidgetsFlutterBinding.ensureInitialized();
+
   // Don't allow landscape mode
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
