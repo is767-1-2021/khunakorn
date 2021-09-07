@@ -51,7 +51,7 @@ class ForecastTableView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: ColorTransitionText(
-                    text: DateUtils.weekdays[dailyWeather.dateTime.weekday],
+                    text: MyDateUtils.weekdays[dailyWeather.dateTime.weekday],
                     style: textStyle,
                     animation: textColorTween.animate(controller),
                   ),
