@@ -13,7 +13,6 @@ void main() {
       .then((_) => runApp(MyApp(settings: settings)));
 }
 
-
 class MyApp extends StatelessWidget {
   final AppSettings settings;
 
