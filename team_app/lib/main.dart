@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Pages/location_page.dart';
+
 import 'pages/favorite_page.dart';
 
 void main() {
@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
            bodyText2: TextStyle(color: Colors.purple),
          )
       ),
-      initialRoute: '/location',
+      initialRoute: '/favorite',
       routes: <String, WidgetBuilder> {
         '/favorite': (context) => FavoritePage(),
-        '/location': (context) => LocationPage(),
+        
       }
     );
   }
