@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'location_page.dart';
 
+
 class FavoritePage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
