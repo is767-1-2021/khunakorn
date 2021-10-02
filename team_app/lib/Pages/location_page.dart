@@ -1,88 +1,141 @@
 import 'dart:async';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
-const LatLng SOURCE_LOCATION = LatLng(42.7477863,-71.1699932);
-const LatLng DEST_LOCATION = LatLng(42.743902,-71.170009);
-const double CAMERA_ZOOM = 16;
-const double CAMERA_TILT = 80;
-const double CAMERA_BEARING = 30;
 
 class LocationPage extends StatefulWidget {
-    
+  const LocationPage({Key? key}) : super(key: key);
+
   @override
   _LocationPageState createState() => _LocationPageState();
 }
 
-
 class _LocationPageState extends State<LocationPage> {
-  Completer<GoogleMapController> _controller = Completer();
-  late BitmapDescriptor sourceIcon;
-  late BitmapDescriptor destinationIcon;
-  Set<Marker> _markers = Set<Marker>();
+  final Completer<GoogleMapController> _controller = Completer();
+  late LocationData currentLocation;
 
-  late LatLng currentLocation;
-  late LatLng destinationLocation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // set up initial locations
-    this.setInitialLocation();
-    // set up the marker icons
-    this.setSourceAndDestinationMarkerIcons();
-  }
-
-  void setSourceAndDestinationMarkerIcons() async{
-    sourceIcon = await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(devicePixelRatio: 2.0),
-      'assets/pic/source_pin_android.png'
-    );
-
-    destinationIcon = await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(devicePixelRatio: 2.0),
-      'assets/pic/destination_pin_android.png'
-    );
-  }
-
-  void setInitialLocation() {
-    currentLocation = LatLng(
-      SOURCE_LOCATION.latitude,
-      SOURCE_LOCATION.longitude
-    );
-
-    destinationLocation = LatLng(
-      DEST_LOCATION.latitude,
-      DEST_LOCATION.longitude
-    );
-  }
+  static const CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(13.74700, 100.53906),
+    zoom: 15,
+  );
 
   @override
   Widget build(BuildContext context) {
-    
-    CameraPosition initialCameraPosition = CameraPosition(
-      zoom: CAMERA_ZOOM,
-      tilt: CAMERA_TILT,
-      bearing: CAMERA_BEARING,
-      target: SOURCE_LOCATION
-    );
-    
     return Scaffold(
-      body: Container(
-        child: GoogleMap(
-          myLocationButtonEnabled: true,
-          compassEnabled: false,
-          tiltGesturesEnabled: false,
-          markers: _markers,
-          mapType: MapType.normal,
-          initialCameraPosition: initialCameraPosition,
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-          },
-        )
-      )
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text('Location'),
+        //automaticallyImplyLeading: false,
+      ),
+      body: GoogleMap(
+        markers: {
+          Marker(
+              markerId: MarkerId("1"),
+              position: LatLng(13.74700, 100.53906),
+              
+              infoWindow:
+                  InfoWindow(title: "You Here", snippet: "XXXXXX"),
+              //icon: _markerIcon,
+              visible: true
+              // onTap: () =>
+              //     _openOnGoogleMapApp(13.653296334116222, 100.41089676426907)
+              ),
+      
+          Marker(
+              markerId: MarkerId("2"),
+              position: LatLng(13.75027, 100.54006),
+              infoWindow:
+                  InfoWindow(title: "2", snippet: "XXXXXX"),
+              //icon: _markerIcon,
+              visible: true,
+              //onTap: () =>
+              //_openOnGoogleMapApp(13.653296334116222, 100.41089676426907)
+              ),
+          
+          Marker(
+              markerId: MarkerId('3'),
+              
+              position: LatLng(13.74643, 100.53476),
+              infoWindow:
+                  InfoWindow(title: "3", snippet: "XXXXXX",
+              onTap: (){
+                Navigator.push(context,
+                MaterialPageRoute(
+                  builder: (context) => MovedCat()),
+                      
+                  );
+              },
+              
+              //icon: _markerIcon,
+              //visible: true,
+              
+              
+              
+              
+              //     _openOnGoogleMapApp(13.653296334116222, 100.41089676426907)
+            ),
+          ),
+        },
+        compassEnabled: true,
+        myLocationButtonEnabled: true,
+        mapType: MapType.normal,
+        initialCameraPosition: _kGooglePlex,
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+      ),
+
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          _openOnGoogleMapApp(13.74700, 100.53906);
+        },
+        label: const Text(
+          'Change Location',
+          style:
+              TextStyle(fontFamily: 'BaiJamjuree', fontWeight: FontWeight.bold),
+        ),
+        icon: const Icon(Icons.pin_drop_outlined),
+        //backgroundColor: Colors.teal.withOpacity(0.95),
+      ),
+    );
+  }
+
+  _openOnGoogleMapApp(double latitude, double longitude) async {
+    String googleUrl =
+        'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      // Could not open the map.
+    }
+  }
+}
+
+
+class MovedCat extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        onTap: (){
+          Navigator.pop(context);
+        },
+        child: Center(
+          child: Hero(
+            tag: 'Cat',
+            child: Image.asset(
+              'pic/deal1.png',
+              width: 350,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
