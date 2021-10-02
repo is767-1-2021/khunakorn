@@ -32,4 +32,6 @@ flutter:
   uses-material-design: true
   assets:
     - pic/deal1.png
+    - pic/deal2.png
+    - pic/deal3.png
     - pic/map1.jpg

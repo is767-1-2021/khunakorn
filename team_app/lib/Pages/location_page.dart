@@ -40,24 +40,31 @@ class _LocationPageState extends State<LocationPage> {
               position: LatLng(13.74700, 100.53906),
               
               infoWindow:
-                  InfoWindow(title: "You Here", snippet: "XXXXXX"),
-              //icon: _markerIcon,
-              visible: true
-              // onTap: () =>
-              //     _openOnGoogleMapApp(13.653296334116222, 100.41089676426907)
-              ),
+                  InfoWindow(title: "You Here", snippet: "XXXXXX",
+              onTap: (){
+                Navigator.push(context,
+                MaterialPageRoute(
+                  builder: (context) => Moved1()),
+                      
+                );
+              },
+            ),
+          ),
       
           Marker(
               markerId: MarkerId("2"),
               position: LatLng(13.75027, 100.54006),
               infoWindow:
-                  InfoWindow(title: "2", snippet: "XXXXXX"),
-              //icon: _markerIcon,
-              visible: true,
-              //onTap: () =>
-              //_openOnGoogleMapApp(13.653296334116222, 100.41089676426907)
-              ),
-          
+                  InfoWindow(title: "2", snippet: "XXXXXX",
+              onTap: (){
+                Navigator.push(context,
+                MaterialPageRoute(
+                  builder: (context) => Moved2()),
+                      
+                );
+              },
+            ),
+          ),
           Marker(
               markerId: MarkerId('3'),
               
@@ -67,17 +74,13 @@ class _LocationPageState extends State<LocationPage> {
               onTap: (){
                 Navigator.push(context,
                 MaterialPageRoute(
-                  builder: (context) => MovedCat()),
+                  builder: (context) => Moved3()),
                       
-                  );
+                );
               },
               
               //icon: _markerIcon,
               //visible: true,
-              
-              
-              
-              
               //     _openOnGoogleMapApp(13.653296334116222, 100.41089676426907)
             ),
           ),
@@ -117,8 +120,7 @@ class _LocationPageState extends State<LocationPage> {
   }
 }
 
-
-class MovedCat extends StatelessWidget {
+class Moved1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,9 +130,52 @@ class MovedCat extends StatelessWidget {
         },
         child: Center(
           child: Hero(
-            tag: 'Cat',
+            tag: 'Deal',
             child: Image.asset(
               'pic/deal1.png',
+              width: 350,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+class Moved2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        onTap: (){
+          Navigator.pop(context);
+        },
+        child: Center(
+          child: Hero(
+            tag: 'Deal',
+            child: Image.asset(
+              'pic/deal2.png',
+              width: 350,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Moved3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        onTap: (){
+          Navigator.pop(context);
+        },
+        child: Center(
+          child: Hero(
+            tag: 'Deal',
+            child: Image.asset(
+              'pic/deal3.png',
               width: 350,
             ),
           ),
