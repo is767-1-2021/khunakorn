@@ -1,28 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_app/pages/sixth.dart';
+import 'package:provider/provider.dart';
+import 'model/form.dart';
+import 'pages/fifth.dart';
+import 'pages/first.dart';
+import 'pages/fourt.dart';
+import 'pages/home.dart';
+import 'pages/second.dart';
+import 'pages/third.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => FormModel(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+         primaryColor: Colors.amber,
+         accentColor: Colors.yellow,
+         textTheme: TextTheme(
+           bodyText2: TextStyle(color: Colors.purple),
+         )
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: 'home',
+      routes: <String, WidgetBuilder> {
+        'home': (context) => HomePage(),
+        '/1': (context) => FirstPage(),
+        '/2': (context) => SecondPage(),
+        '/3': (context) => ThirdPage(),
+        '/4': (context) => FourthPage(),
+        '/5': (context) => FifthPage(),
+        '/6': (context) => SixthPage(),
+      }
     );
   }
 }
@@ -111,3 +132,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
