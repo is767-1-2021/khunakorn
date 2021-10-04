@@ -30,7 +30,9 @@ class _LocationPageState extends State<LocationPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Location'),
+        title: const Text('Location',
+        style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.deepPurple.shade600,
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.search)),
           IconButton(
