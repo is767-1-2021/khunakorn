@@ -31,7 +31,10 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
-    - pic/deal1.png
-    - pic/deal2.png
-    - pic/deal3.png
-    - pic/map1.jpg
+    - image/deal1.png
+    - image/deal2.png
+    - image/deal3.png
+    - image/map1.jpg
+    - image/kamu.jpg
+    - image/krispykreme.jpg
+    - image/oishi.jpg

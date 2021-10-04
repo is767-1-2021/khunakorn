@@ -31,6 +31,20 @@ class _LocationPageState extends State<LocationPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Location'),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.search)),
+          IconButton(
+            onPressed: (){
+              Navigator.push(context,
+                MaterialPageRoute(
+                  builder: (context) => LocationPage(),
+                ),
+              );
+            },
+            icon: Icon(Icons.map)
+          ),
+          IconButton(onPressed: (){}, icon: Icon(Icons.account_circle)),
+        ]
         //automaticallyImplyLeading: false,
       ),
       body: GoogleMap(
@@ -132,7 +146,7 @@ class Moved1 extends StatelessWidget {
           child: Hero(
             tag: 'Deal',
             child: Image.asset(
-              'pic/deal1.png',
+              'image/deal1.png',
               width: 350,
             ),
           ),
@@ -153,7 +167,7 @@ class Moved2 extends StatelessWidget {
           child: Hero(
             tag: 'Deal',
             child: Image.asset(
-              'pic/deal2.png',
+              'image/deal2.png',
               width: 350,
             ),
           ),
@@ -175,7 +189,7 @@ class Moved3 extends StatelessWidget {
           child: Hero(
             tag: 'Deal',
             child: Image.asset(
-              'pic/deal3.png',
+              'image/deal3.png',
               width: 350,
             ),
           ),
