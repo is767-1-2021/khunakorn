@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:team_app/model/favorite_model.dart';
 
-abstract class Services {
+abstract class FvServices {
   Future<List<Favorite>> getFavorites();
   Future<String> addFavorite(Favorite value);
 }
 
-class FavoriteServices extends Services {
+class FavoriteServices extends FvServices {
   @override
   Future<List<Favorite>> getFavorites() async {
     QuerySnapshot snapshot =
@@ -20,7 +19,6 @@ class FavoriteServices extends Services {
   Future<String> addFavorite(Favorite value) async {
     DocumentReference ref =
         await FirebaseFirestore.instance.collection('group_favorites').add({
-
       'title': value.title,
       'brand': value.brand,
       'category': value.category,

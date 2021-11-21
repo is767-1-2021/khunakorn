@@ -1,24 +1,21 @@
-import 'dart:developer';
 import 'dart:ui';
-
 import 'package:team_app/chatpage.dart';
 import 'package:team_app/controllers/favorite_controller.dart';
 import 'package:team_app/deal_page.dart';
-
 import 'package:flutter/material.dart';
 import 'package:team_app/model/favorite_model.dart';
 import 'package:team_app/profile.dart';
-import 'package:team_app/services/deal_services.dart';
+import 'package:team_app/services/favorite_services.dart';
 import 'around_you.dart';
 import 'create_deal.dart';
 import 'join_deal_favorite.dart';
 
 class FavoritePage extends StatefulWidget {
   var controller;
-  var service = FirebaseServices();
+  var fvservice = FavoriteServices();
 
   FavoritePage() {
-    controller = FavoriteController(service);
+    controller = FavoriteController(fvservice);
   }
 
   @override
@@ -55,7 +52,7 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
       backgroundColor: Colors.deepPurple[900],
       appBar: AppBar(
-        title: Text('Enjoy with the best Deal!',
+        title: Text('Your Favorite Deals!',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
@@ -65,25 +62,6 @@ class _FavoritePageState extends State<FavoritePage> {
             : Column(
                 children: <Widget>[
                   Padding(padding: EdgeInsets.all(5)),
-                  
-                  SizedBox(
-                    height: 40,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: Padding(
-                              padding: EdgeInsets.only(top: 10),
-                              child: Text(
-                                'Upcoiming Deal : ${favorites.length.toString()} Deals Now!',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.white),
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.7,
                     child: ListView.builder(
@@ -212,15 +190,16 @@ class _FavoritePageState extends State<FavoritePage> {
                 ],
               ),
       ),
-      floatingActionButton: FloatingActionButton(
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.deepPurple[900],
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => CreateDeal()));
-        },
-      ),
+      // ปุ่ม สร้างข้อมูล
+      //floatingActionButton: FloatingActionButton(
+      //  foregroundColor: Colors.white,
+      //  backgroundColor: Colors.deepPurple[900],
+      //  child: Icon(Icons.add),
+      //  onPressed: () {
+      //    Navigator.pushReplacement(
+      //        context, MaterialPageRoute(builder: (context) => CreateDeal()));
+      //  },
+      //),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,

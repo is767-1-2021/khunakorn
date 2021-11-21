@@ -3,7 +3,7 @@ import 'package:team_app/model/favorite_model.dart';
 import 'package:team_app/services/favorite_services.dart';
 
 class FavoriteController {
-  final Services services;
+  final FvServices services;
   List<Favorite> favorites = List.empty();
 
   StreamController<bool> onSyncController = StreamController();

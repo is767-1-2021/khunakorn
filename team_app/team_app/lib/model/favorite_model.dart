@@ -7,6 +7,7 @@ class Favorite {
   final String title;
   final String category;
   final String price;
+
   bool isClosed;
 
   /*constructor */
@@ -17,7 +18,6 @@ class Favorite {
     Map<String, dynamic> json,
   ) {
     return Favorite(
-      //json['caption'] as String,
       json['brand'] as String,
       json['title'] as String,
       json['place'] as String,

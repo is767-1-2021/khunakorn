@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:team_app/deal_page.dart';
 import 'package:team_app/model/favorite_model.dart';
-import 'model/deal_model.dart';
+
 
 class JoinDealFavorite extends StatefulWidget {
   final Favorite fv;
@@ -18,14 +16,14 @@ class _JoinDealFavoriteState extends State<JoinDealFavorite> {
   int _counter = 0;
 
   //void _incrementCounter() {
-    //setState(() {
-      /*กดได้ครั้งเดียว*/
-      //if (_counter < widget.fv.member) {
-        //_counter += 1;
-      //} else {
-       // _counter += 0;
-      //}
-    //});
+  //  setState(() {
+  //    /*กดได้ครั้งเดียว*/
+  //    if (_counter < widget.fv.member) {
+  //      _counter += 1;
+  //    } else {
+  //      _counter += 0;
+  //    }
+  //  });
   //}
 
   @override
@@ -156,10 +154,10 @@ class _JoinDealFavoriteState extends State<JoinDealFavorite> {
                           Text('$_counter /', style: TextStyle(fontSize: 20)),
                     ),
                     //Container(
-                     // padding: EdgeInsets.all(20),
-                      //alignment: Alignment.centerLeft,
-                      //child: Text(widget.fv.member.toString(),
-                       //   style: TextStyle(fontSize: 20)),
+                    //  padding: EdgeInsets.all(20),
+                    //  alignment: Alignment.centerLeft,
+                    //  child: Text(widget.fv.member.toString(),
+                    //      style: TextStyle(fontSize: 20)),
                     //),
                   ],
                 ),
