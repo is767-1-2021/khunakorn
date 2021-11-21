@@ -117,7 +117,7 @@ class _LocationPageState extends State<LocationPage> {
         label: const Text(
           'Change Location',
           style:
-              TextStyle(fontFamily: 'BaiJamjuree', fontWeight: FontWeight.bold),
+              TextStyle(fontFamily: '', fontWeight: FontWeight.bold),
         ),
         icon: const Icon(Icons.pin_drop_outlined),
         //backgroundColor: Colors.teal.withOpacity(0.95),
